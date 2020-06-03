@@ -24,6 +24,9 @@ Route::get('/users',function(){
     $users = User::orderBy("id",'desc')->paginate(9);
     return view('users',compact('users'));
 })->name('users.index');
+
+//has one through test and practice
+Route::resource('hasOneThrough', 'HasOneThroughtController');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
