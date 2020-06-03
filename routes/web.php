@@ -1,5 +1,6 @@
 <?php
 
+use App\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +17,15 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+Route::resource('role', 'RoleController');
+Route::get('/users',function(){
+    $users = User::orderBy("id",'desc')->paginate(9);
+    return view('users',compact('users'));
+})->name('users.index');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+
