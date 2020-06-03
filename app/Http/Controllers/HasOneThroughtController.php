@@ -14,8 +14,12 @@ class HasOneThroughtController extends Controller
      */
     public function index()
     {
-        $mechanic = Mechanic::find(1);
-        return $mechanic->carOwner;
+        //has one through relationship
+        $mechanic = Mechanic::findOrFail(1);
+        // return $mechanic->carOwner;
+
+        //has many through realtionship
+        return $mechanic->owners;
     }
 
     /**

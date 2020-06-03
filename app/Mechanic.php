@@ -13,4 +13,13 @@ class Mechanic extends Model
     {
         return $this->hasOneThrough('App\Owner', 'App\Car');
     }
+
+
+    /**
+     * Get all of the owners for the mechnic.
+     */
+    public function owners()
+    {
+        return $this->hasManyThrough('App\Owner', 'App\Car');
+    }
 }
