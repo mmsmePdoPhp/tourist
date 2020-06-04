@@ -19,17 +19,23 @@ Route::get('/', function () {
 });
 
 
+Route::resource('users', 'UserController');
+//has one through test and practice
+Route::resource('cateogry', 'CategoryController');
+Route::resource('tag', 'TagController');
+Route::resource('tor', 'TorController');
+Route::resource('tortype', 'TortypeController');
+Route::resource('foodprice', 'FoodpriceController');
+Route::resource('attraction', 'AtrractionController');
+Route::resource('city', 'CityController');
 Route::resource('role', 'RoleController');
-Route::get('/users',function(){
-    $users = User::orderBy("id",'desc')->paginate(9);
-    return view('users',compact('users'));
-})->name('users.index');
+Route::resource('post', 'PostController');
+Route::resource('state', 'StateController');
+Route::resource('guid', 'GuidController');
+Route::resource('comment', 'CommentController');
+Route::resource('link', 'LinkController');
+Route::resource('sublink', 'SublinkController');
 
-//has one through test and practice
-Route::resource('hasOneThrough', 'HasOneThroughtController');
-
-//has one through test and practice
-Route::resource('polymorphicOne', 'PolymorphicController');
 
 
 Auth::routes();
