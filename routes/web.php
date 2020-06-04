@@ -1,6 +1,5 @@
 <?php
 
-use App\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,18 +27,31 @@ Route::get('newCategory','CategoryController@newCategory')->name("cateogry.new")
 
 
 Route::resource('tag', 'TagController');
+
 Route::resource('tor', 'TorController');
+
 Route::resource('tortype', 'TortypeController');
+
 Route::resource('foodprice', 'FoodpriceController');
+
 Route::resource('attraction', 'AtrractionController');
+
 Route::resource('city', 'CityController');
+
 Route::resource('role', 'RoleController');
+
 Route::resource('post', 'PostController');
+
 Route::resource('state', 'StateController');
+
 Route::resource('guid', 'GuidController');
+
 Route::resource('comment', 'CommentController');
+
 Route::resource('link', 'LinkController');
+
 Route::resource('sublink', 'SublinkController');
+
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 

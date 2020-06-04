@@ -41,7 +41,7 @@
             </a>
             <ul class="nav nav-treeview bg-navy">
               <li class="nav-item bg-cyan">
-                <a href="{{route('users.create')}}" class="nav-link">
+                <a href="{{route('register')}}" class="nav-link">
                     <i class="nav-icon fa fa-plus" aria-hidden="true"></i>
                     <p>New</p>
                 </a>
@@ -49,7 +49,7 @@
               <li class="nav-item bg-blue">
                 <a href="{{route('users.index')}}" class="nav-link">
                     <i class="nav-icon fas fa-book-open"></i>
-                    <p>All Books</p>
+                    <p>All Users</p>
                 </a>
               </li>
               <li class="nav-item bg-trashed">

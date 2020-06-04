@@ -32,9 +32,6 @@
             <div class="row justify-cotnent-center">
 
 
-
-
-
             @foreach ($users as $user)
 
                 {{-- show user informations --}}
