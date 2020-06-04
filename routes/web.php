@@ -27,6 +27,11 @@ Route::get('/users',function(){
 
 //has one through test and practice
 Route::resource('hasOneThrough', 'HasOneThroughtController');
+
+//has one through test and practice
+Route::resource('polymorphicOne', 'PolymorphicController');
+
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
