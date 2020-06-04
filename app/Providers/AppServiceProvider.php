@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\View\Components\Alert;
 use App\View\Components\Modal;
+use App\View\Components\ShowFormError;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
@@ -29,6 +30,7 @@ class AppServiceProvider extends ServiceProvider
     {
         Schema::defaultStringLength(191);
 
+        Blade::component('package-formError', ShowFormError::class);
         Blade::component('package-alert', Alert::class);
         Blade::component('package-modal', Modal::class);
 

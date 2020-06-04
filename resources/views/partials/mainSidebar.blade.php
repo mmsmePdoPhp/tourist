@@ -30,51 +30,24 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item">
-            <a href="" class="nav-link bg-purple">
-                <i class="nav-icon fas fa-list-alt"></i>
-                <p>Category</p>
-            </a>
 
-          </li>
-          <li class="nav-item">
-            <a href="{{route('users.index')}}" class="nav-link bg-cornflowerblue text-white">
-                <i class="nav-icon fas fa-users"></i>
-                <p>Users</p>
-            </a>
-          </li>
-
-          <li class="nav-item">
-            <a href="" class="nav-link bg-cornflowerblue text-white">
-                <i class="nav-icon fas fa-users"></i>
-                <p>Authors</p>
-            </a>
-          </li>
-
-          <li class="nav-item">
-            <a href="" class="nav-link bg-purple">
-                <i class="nav-icon fas fa-list-alt"></i>
-                <p>Tag</p>
-            </a>
-
-          </li>
 
           <li class="nav-item has-treeview bg-cornflowerblue">
             <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-book"></i>              <p>
-                Books
+                    users
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
             <ul class="nav nav-treeview bg-navy">
               <li class="nav-item bg-cyan">
-                <a href="" class="nav-link">
+                <a href="{{route('users.create')}}" class="nav-link">
                     <i class="nav-icon fa fa-plus" aria-hidden="true"></i>
                     <p>New</p>
                 </a>
               </li>
               <li class="nav-item bg-blue">
-                <a href="" class="nav-link">
+                <a href="{{route('users.index')}}" class="nav-link">
                     <i class="nav-icon fas fa-book-open"></i>
                     <p>All Books</p>
                 </a>
@@ -88,18 +61,473 @@
 
             </ul>
           </li>
+          <li class="nav-item has-treeview bg-cornflowerblue">
+            <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-book"></i>              <p>
+                    cateogry
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview bg-navy">
+              <li class="nav-item bg-cyan">
+                <a href="{{route("cateogry.new")}}" class="nav-link">
+                    <i class="nav-icon fa fa-plus" aria-hidden="true"></i>
+                    <p>New</p>
+                </a>
+              </li>
+              <li class="nav-item bg-blue">
+                <a href="{{route("cateogry.index")}}" class="nav-link">
+                    <i class="nav-icon fas fa-book-open"></i>
+                    <p>All Books</p>
+                </a>
+              </li>
+              <li class="nav-item bg-trashed">
+                <a href="" class="nav-link">
+                    <i class="nav-icon fas fa-trash-alt"></i>
+                    <p>Trshed</p>
+                </a>
+              </li>
+
+            </ul>
+          </li>
+          <li class="nav-item has-treeview bg-cornflowerblue">
+            <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-book"></i>              <p>
+                    tag
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview bg-navy">
+              <li class="nav-item bg-cyan">
+                <a href="{{route("tag.create")}}" class="nav-link">
+                    <i class="nav-icon fa fa-plus" aria-hidden="true"></i>
+                    <p>New</p>
+                </a>
+              </li>
+              <li class="nav-item bg-blue">
+                <a href="{{route("tag.index")}}" class="nav-link">
+                    <i class="nav-icon fas fa-book-open"></i>
+                    <p>All Books</p>
+                </a>
+              </li>
+              <li class="nav-item bg-trashed">
+                <a href="" class="nav-link">
+                    <i class="nav-icon fas fa-trash-alt"></i>
+                    <p>Trshed</p>
+                </a>
+              </li>
+
+            </ul>
+          </li>
+          <li class="nav-item has-treeview bg-cornflowerblue">
+            <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-book"></i>              <p>
+                    tor
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview bg-navy">
+              <li class="nav-item bg-cyan">
+                <a href="{{route("tor.create")}}" class="nav-link">
+                    <i class="nav-icon fa fa-plus" aria-hidden="true"></i>
+                    <p>New</p>
+                </a>
+              </li>
+              <li class="nav-item bg-blue">
+                <a href="{{route("tor.index")}}" class="nav-link">
+                    <i class="nav-icon fas fa-book-open"></i>
+                    <p>All Books</p>
+                </a>
+              </li>
+              <li class="nav-item bg-trashed">
+                <a href="" class="nav-link">
+                    <i class="nav-icon fas fa-trash-alt"></i>
+                    <p>Trshed</p>
+                </a>
+              </li>
+
+            </ul>
+          </li>
+          <li class="nav-item has-treeview bg-cornflowerblue">
+            <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-book"></i>              <p>
+                    tortype
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview bg-navy">
+              <li class="nav-item bg-cyan">
+                <a href="{{route("tortype.create")}}" class="nav-link">
+                    <i class="nav-icon fa fa-plus" aria-hidden="true"></i>
+                    <p>New</p>
+                </a>
+              </li>
+              <li class="nav-item bg-blue">
+                <a href="{{route("tortype.index")}}" class="nav-link">
+                    <i class="nav-icon fas fa-book-open"></i>
+                    <p>All Books</p>
+                </a>
+              </li>
+              <li class="nav-item bg-trashed">
+                <a href="" class="nav-link">
+                    <i class="nav-icon fas fa-trash-alt"></i>
+                    <p>Trshed</p>
+                </a>
+              </li>
+
+            </ul>
+          </li>
+          <li class="nav-item has-treeview bg-cornflowerblue">
+            <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-book"></i>              <p>
+                    foodprice
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview bg-navy">
+              <li class="nav-item bg-cyan">
+                <a href="{{route("foodprice.create")}}" class="nav-link">
+                    <i class="nav-icon fa fa-plus" aria-hidden="true"></i>
+                    <p>New</p>
+                </a>
+              </li>
+              <li class="nav-item bg-blue">
+                <a href="{{route("foodprice.index")}}" class="nav-link">
+                    <i class="nav-icon fas fa-book-open"></i>
+                    <p>All Books</p>
+                </a>
+              </li>
+              <li class="nav-item bg-trashed">
+                <a href="" class="nav-link">
+                    <i class="nav-icon fas fa-trash-alt"></i>
+                    <p>Trshed</p>
+                </a>
+              </li>
+
+            </ul>
+          </li>
+          <li class="nav-item has-treeview bg-cornflowerblue">
+            <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-book"></i>              <p>
+                    attraction
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview bg-navy">
+              <li class="nav-item bg-cyan">
+                <a href="{{route("attraction.create")}}" class="nav-link">
+                    <i class="nav-icon fa fa-plus" aria-hidden="true"></i>
+                    <p>New</p>
+                </a>
+              </li>
+              <li class="nav-item bg-blue">
+                <a href="{{route("attraction.index")}}" class="nav-link">
+                    <i class="nav-icon fas fa-book-open"></i>
+                    <p>All Books</p>
+                </a>
+              </li>
+              <li class="nav-item bg-trashed">
+                <a href="" class="nav-link">
+                    <i class="nav-icon fas fa-trash-alt"></i>
+                    <p>Trshed</p>
+                </a>
+              </li>
+
+            </ul>
+          </li>
+          <li class="nav-item has-treeview bg-cornflowerblue">
+            <a href="" class="nav-link">
+                <i class="nav-icon fas fa-book"></i>              <p>
+                    city
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview bg-navy">
+              <li class="nav-item bg-cyan">
+                <a href="{{route("city.create")}}" class="nav-link">
+                    <i class="nav-icon fa fa-plus" aria-hidden="true"></i>
+                    <p>New</p>
+                </a>
+              </li>
+              <li class="nav-item bg-blue">
+                <a href="{{route("city.index")}}" class="nav-link">
+                    <i class="nav-icon fas fa-book-open"></i>
+                    <p>All Books</p>
+                </a>
+              </li>
+              <li class="nav-item bg-trashed">
+                <a href="" class="nav-link">
+                    <i class="nav-icon fas fa-trash-alt"></i>
+                    <p>Trshed</p>
+                </a>
+              </li>
+
+            </ul>
+          </li>
+          <li class="nav-item has-treeview bg-cornflowerblue">
+            <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-book"></i>              <p>
+                role
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview bg-navy">
+              <li class="nav-item bg-cyan">
+                <a href="{{route('role.create')}}" class="nav-link">
+                    <i class="nav-icon fa fa-plus" aria-hidden="true"></i>
+                    <p>New</p>
+                </a>
+              </li>
+              <li class="nav-item bg-blue">
+                <a href="{{route('role.index')}}" class="nav-link">
+                    <i class="nav-icon fas fa-book-open"></i>
+                    <p>All Roles</p>
+                </a>
+              </li>
+              <li class="nav-item bg-trashed">
+                <a href="" class="nav-link">
+                    <i class="nav-icon fas fa-trash-alt"></i>
+                    <p>Trshed</p>
+                </a>
+              </li>
+
+            </ul>
+          </li>
+          <li class="nav-item has-treeview bg-cornflowerblue">
+            <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-book"></i>              <p>
+                    post
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview bg-navy">
+              <li class="nav-item bg-cyan">
+                <a href="{{route("post.create")}}" class="nav-link">
+                    <i class="nav-icon fa fa-plus" aria-hidden="true"></i>
+                    <p>New</p>
+                </a>
+              </li>
+              <li class="nav-item bg-blue">
+                <a href="{{route("post.index")}}" class="nav-link">
+                    <i class="nav-icon fas fa-book-open"></i>
+                    <p>All Posts</p>
+                </a>
+              </li>
+              <li class="nav-item bg-trashed">
+                <a href="" class="nav-link">
+                    <i class="nav-icon fas fa-trash-alt"></i>
+                    <p>Trshed</p>
+                </a>
+              </li>
+
+            </ul>
+          </li>
+
+          <li class="nav-item has-treeview bg-cornflowerblue">
+            <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-book"></i>              <p>
+                    post
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview bg-navy">
+              <li class="nav-item bg-cyan">
+                <a href="{{route("post.create")}}" class="nav-link">
+                    <i class="nav-icon fa fa-plus" aria-hidden="true"></i>
+                    <p>New</p>
+                </a>
+              </li>
+              <li class="nav-item bg-blue">
+                <a href="{{route("post.index")}}" class="nav-link">
+                    <i class="nav-icon fas fa-book-open"></i>
+                    <p>All Posts</p>
+                </a>
+              </li>
+              <li class="nav-item bg-trashed">
+                <a href="" class="nav-link">
+                    <i class="nav-icon fas fa-trash-alt"></i>
+                    <p>Trshed</p>
+                </a>
+              </li>
+
+            </ul>
+          </li>
+
+
+
+          <li class="nav-item has-treeview bg-cornflowerblue">
+            <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-book"></i>              <p>
+                    state
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview bg-navy">
+              <li class="nav-item bg-cyan">
+                <a href="{{route("state.create")}}" class="nav-link">
+                    <i class="nav-icon fa fa-plus" aria-hidden="true"></i>
+                    <p>New</p>
+                </a>
+              </li>
+              <li class="nav-item bg-blue">
+                <a href="{{route("state.index")}}" class="nav-link">
+                    <i class="nav-icon fas fa-book-open"></i>
+                    <p>All state</p>
+                </a>
+              </li>
+              <li class="nav-item bg-trashed">
+                <a href="" class="nav-link">
+                    <i class="nav-icon fas fa-trash-alt"></i>
+                    <p>Trshed</p>
+                </a>
+              </li>
+
+            </ul>
+          </li>
+
+
+          <li class="nav-item has-treeview bg-cornflowerblue">
+            <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-book"></i>              <p>
+                    guid
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview bg-navy">
+              <li class="nav-item bg-cyan">
+                <a href="{{route("guid.create")}}" class="nav-link">
+                    <i class="nav-icon fa fa-plus" aria-hidden="true"></i>
+                    <p>New</p>
+                </a>
+              </li>
+              <li class="nav-item bg-blue">
+                <a href="{{route("guid.index")}}" class="nav-link">
+                    <i class="nav-icon fas fa-book-open"></i>
+                    <p>All guids</p>
+                </a>
+              </li>
+              <li class="nav-item bg-trashed">
+                <a href="" class="nav-link">
+                    <i class="nav-icon fas fa-trash-alt"></i>
+                    <p>Trshed</p>
+                </a>
+              </li>
+
+            </ul>
+          </li>
+
+
+
+
+          <li class="nav-item has-treeview bg-cornflowerblue">
+            <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-book"></i>              <p>
+                    comment
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview bg-navy">
+              <li class="nav-item bg-cyan">
+                <a href="{{route("comment.create")}}" class="nav-link">
+                    <i class="nav-icon fa fa-plus" aria-hidden="true"></i>
+                    <p>New</p>
+                </a>
+              </li>
+              <li class="nav-item bg-blue">
+                <a href="{{route("comment.index")}}" class="nav-link">
+                    <i class="nav-icon fas fa-book-open"></i>
+                    <p>All comments</p>
+                </a>
+              </li>
+              <li class="nav-item bg-trashed">
+                <a href="" class="nav-link">
+                    <i class="nav-icon fas fa-trash-alt"></i>
+                    <p>Trshed</p>
+                </a>
+              </li>
+
+            </ul>
+          </li>
+          <li class="nav-item has-treeview bg-cornflowerblue">
+            <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-book"></i>              <p>
+                    link
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview bg-navy">
+              <li class="nav-item bg-cyan">
+                <a href="{{route("link.create")}}" class="nav-link">
+                    <i class="nav-icon fa fa-plus" aria-hidden="true"></i>
+                    <p>New</p>
+                </a>
+              </li>
+              <li class="nav-item bg-blue">
+                <a href="{{route("link.index")}}" class="nav-link">
+                    <i class="nav-icon fas fa-book-open"></i>
+                    <p>All links</p>
+                </a>
+              </li>
+              <li class="nav-item bg-trashed">
+                <a href="" class="nav-link">
+                    <i class="nav-icon fas fa-trash-alt"></i>
+                    <p>Trshed</p>
+                </a>
+              </li>
+
+            </ul>
+          </li>
+
+<li class="nav-item has-treeview bg-cornflowerblue">
+            <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-book"></i>              <p>
+                    sublink
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview bg-navy">
+              <li class="nav-item bg-cyan">
+                <a href="{{route("sublink.create")}}" class="nav-link">
+                    <i class="nav-icon fa fa-plus" aria-hidden="true"></i>
+                    <p>New</p>
+                </a>
+              </li>
+              <li class="nav-item bg-blue">
+                <a href="{{route("sublink.index")}}" class="nav-link">
+                    <i class="nav-icon fas fa-book-open"></i>
+                    <p>All sublinks</p>
+                </a>
+              </li>
+              <li class="nav-item bg-trashed">
+                <a href="" class="nav-link">
+                    <i class="nav-icon fas fa-trash-alt"></i>
+                    <p>Trshed</p>
+                </a>
+              </li>
+
+            </ul>
+          </li>
+
+
+
+
+
+
+
+
+
 
           <li class="nav-item">
             <a href="pages/widgets.html" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
-                Widgets
+                state
                 <span class="right badge badge-danger">New</span>
               </p>
             </a>
           </li>
           <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
+            <a href="{{route("state.create")}}" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
               <p>
                 Layout Options

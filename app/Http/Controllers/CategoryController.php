@@ -14,7 +14,20 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $categoris = Category::orderBy("id",'desc')->paginate(10);
+        return view("category.category",compact('categoris'));
+
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function newCategory()
+    {
+        return view("category.Categorycreate");
+
     }
 
     /**
@@ -24,7 +37,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view("category.category");
     }
 
     /**
@@ -35,7 +48,25 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //validation
+        $validatedData = $request->validate([
+            'name' => 'required|string|min:3|max:80|unique:categories'
+        ]);
+
+        //store
+        $category = new Category();
+            $category->name = $validatedData['name'];
+        $result = $category->save();
+
+        // flash message
+        if($result){
+            $request->session()->flash('success','new category was successfully created.');
+        }else{
+            $request->session()->flash('error','new category does not created.');
+        }
+
+        //redirect index
+        return redirect(route("cateogry.index"));
     }
 
     /**

@@ -20,8 +20,13 @@ Route::get('/', function () {
 
 
 Route::resource('users', 'UserController');
-//has one through test and practice
+
+//all routes for category
 Route::resource('cateogry', 'CategoryController');
+Route::get('newCategory','CategoryController@newCategory')->name("cateogry.new");
+
+
+
 Route::resource('tag', 'TagController');
 Route::resource('tor', 'TorController');
 Route::resource('tortype', 'TortypeController');
@@ -35,11 +40,7 @@ Route::resource('guid', 'GuidController');
 Route::resource('comment', 'CommentController');
 Route::resource('link', 'LinkController');
 Route::resource('sublink', 'SublinkController');
-
-
-
 Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');
 
 
