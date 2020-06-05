@@ -2,7 +2,7 @@
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
-      <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+      <img src="{{asset('uploaded/default-avatar.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
            style="opacity: .8">
       <span class="brand-text font-weight-light">AdminLTE 3</span>
     </a>
@@ -12,15 +12,24 @@
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
-      <div class="user-panel mt-3 pb-3 mb-3 d-flex justify-content-between">
-        <div class="image">
-          <img src="{{asset('uploaded/')}}" class="img-circle elevation-2" alt="User Image">
-          <a href="" title="profile" class="col-7"></a>
-        </div>
+      <div class="user-panel pb-3 d-flex justify-content-between">
+
+
+        <div class="info row">
+            <form action="{{route('logout')}}" method="post">
+              @csrf
+              <button type="submit" class="bg-inherit btn justify-content-center my-0">
+                  <img src="{{asset('uploaded/default-avatar.png')}}" title="exit" alt="logout icon" class="brand-image m-auto img-circle elevation-2"
+                      style="opacity: .8" >
+                      <a href="" title="profile" class="ml-0 pl-1 col-7">prifile</a>
+              </button>
+            </form>
+          </div>
+
         <div class="info row">
           <form action="{{route('logout')}}" method="post">
             @csrf
-            <button type="submit" class="bg-inherit btn justify-content-center">
+            <button type="submit" class="bg-inherit btn justify-content-center my-0">
                 <img src="{{asset('application_images/exit.png')}}" title="exit" alt="logout icon" class="brand-image m-auto img-circle elevation-3"
                     style="opacity: .8" >
             </button>
