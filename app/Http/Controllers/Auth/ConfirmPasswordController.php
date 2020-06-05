@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\ConfirmsPasswords;
 
 class ConfirmPasswordController extends Controller
 {
+
     /*
     |--------------------------------------------------------------------------
     | Confirm Password Controller
@@ -36,5 +37,7 @@ class ConfirmPasswordController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware(['guest','isAdmin']);
+
     }
 }

@@ -8,6 +8,12 @@ use Illuminate\Foundation\Auth\ResetsPasswords;
 
 class ResetPasswordController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware(['guest','isAdmin']);
+
+    }
     /*
     |--------------------------------------------------------------------------
     | Password Reset Controller
