@@ -14,7 +14,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::orderBy('id','desc')->paginate(10);
+        $users = User::orderBy('id','desc')->paginate(9);
         return view('users.users',compact('users'));
     }
 
@@ -85,5 +85,5 @@ class UserController extends Controller
     }
 
 
-    
+
 }

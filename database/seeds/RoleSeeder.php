@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class RoleSeeder extends Seeder
 {
@@ -11,6 +12,21 @@ class RoleSeeder extends Seeder
      */
     public function run()
     {
-        //
+
+        //administrator full permission
+        $role = DB::table('roles')->insert([
+            'name' => 'admin'
+        ]);
+        
+        //normall user
+        $role = DB::table('roles')->insert([
+            'name' => 'user'
+        ]);
+
+
+        //user just add content to website
+        $role = DB::table('roles')->insert([
+            'name' => 'writer'
+        ]);
     }
 }

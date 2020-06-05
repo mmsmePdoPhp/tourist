@@ -43,6 +43,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    @yield('css')
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -127,6 +128,7 @@
     <script>
         $('#modalStatus').modal('show')
     </script>
+    @yield('script')
 </body>
 
 </html>

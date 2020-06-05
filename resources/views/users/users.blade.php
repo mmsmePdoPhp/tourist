@@ -31,9 +31,12 @@
 
             <div class="row justify-cotnent-center">
 
+            @unless ($users->count() !=null)
+                <p class="m-auto lead blockquote-footer"><i>any User registered yet.</i></p>
+            @endunless
+
 
             @foreach ($users as $user)
-
                 {{-- show user informations --}}
                 <div class="col-sm-6 col-md-6 col-lg-4 ">
 
@@ -67,6 +70,9 @@
                 </div>
             @endforeach
 
+            <div class="row justify-content-center">
+                {{ $users->onEachSide(2)->links() }}
+            </div>
 
 
         </div><!-- /.container-fluid -->

@@ -1,5 +1,8 @@
 <?php
 
+use App\User;
+use Illuminate\Routing\RouteGroup;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,46 +16,61 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
-
-Route::resource('users', 'UserController');
-
-//all routes for category
-Route::resource('cateogry', 'CategoryController');
-Route::get('newCategory','CategoryController@newCategory')->name("cateogry.new");
+Route::group(['middleware' => ['isAdmin']], function () {
 
 
 
-Route::resource('tag', 'TagController');
+    Route::resource('users', 'UserController');
 
-Route::resource('tor', 'TorController');
+    //all routes for category
+    Route::resource('cateogry', 'CategoryController');
+    Route::get('newCategory','CategoryController@newCategory')->name("cateogry.new");
 
-Route::resource('tortype', 'TortypeController');
 
-Route::resource('foodprice', 'FoodpriceController');
 
-Route::resource('attraction', 'AtrractionController');
+    Route::resource('tag', 'TagController');
 
-Route::resource('city', 'CityController');
+    Route::resource('tor', 'TorController');
 
-Route::resource('role', 'RoleController');
+    Route::resource('tortype', 'TortypeController');
 
-Route::resource('post', 'PostController');
+    Route::resource('foodprice', 'FoodpriceController');
 
-Route::resource('state', 'StateController');
+    Route::resource('attraction', 'AtrractionController');
 
-Route::resource('guid', 'GuidController');
+    Route::resource('city', 'CityController');
 
-Route::resource('comment', 'CommentController');
+    Route::resource('role', 'RoleController');
 
-Route::resource('link', 'LinkController');
+    Route::resource('post', 'PostController');
 
-Route::resource('sublink', 'SublinkController');
+    Route::resource('state', 'StateController');
 
-Auth::routes();
-Route::get('/home', 'HomeController@index')->name('home');
+    Route::resource('guid', 'GuidController');
 
+    Route::resource('comment', 'CommentController');
+
+    Route::resource('link', 'LinkController');
+
+    Route::resource('sublink', 'SublinkController');
+
+    Auth::routes();
+    Route::get('/home', 'HomeController@index')->name('home');
+
+    /***
+     * test some thing in here
+     */
+
+     Route::group(['prefix' => '    '], function () {
+        Route::get('isAdmin', function () {
+            // return Auth::user()->roles()->sync([4,5,6]);
+            return (Auth::user()->isAdmin);
+        });
+     });
+});
 

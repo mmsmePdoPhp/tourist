@@ -18,10 +18,13 @@
           <a href="" title="profile" class="col-7"></a>
         </div>
         <div class="info row">
-          <a href="" class="col-5">
-            <img src="{{asset('application_images/exit.png')}}" title="exit" alt="logout icon" class="brand-image img-circle elevation-3"
-                style="opacity: .8" >
-          </a>
+          <form action="{{route('logout')}}" method="post">
+            @csrf
+            <button type="submit" class="bg-inherit btn justify-content-center">
+                <img src="{{asset('application_images/exit.png')}}" title="exit" alt="logout icon" class="brand-image m-auto img-circle elevation-3"
+                    style="opacity: .8" >
+            </button>
+            </form>
         </div>
       </div>
 

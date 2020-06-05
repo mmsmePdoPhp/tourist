@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Auth;
 
 class User extends Authenticatable
 {
@@ -43,5 +44,26 @@ class User extends Authenticatable
     public function roles()
     {
         return $this->belongsToMany('App\Role');
+    }
+
+
+    /**
+     * check is user admin
+     */
+    public static function getIsAdminAttribute(){
+        $result = Auth::user()->roles->filter(function($value, $key){
+            if($value->name ==='admin'){
+                return true;
+            }
+        });
+        if(count($result) === 0){
+            return false;
+        }else{
+            if($result[0]->name =='admin'){
+                return true;
+            }else{
+                return false;
+            }
+        }
     }
 }

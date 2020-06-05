@@ -1,6 +1,9 @@
 @extends('layouts.layoutPoor')
 
 @section('content')
+    @if (session()->get('error'))
+        <x-package-alert type="danger" title="Sorry !!" message="{{session()->get('error')}}" />
+    @endif
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -53,4 +56,12 @@
         </div>
     </div>
 </div>
+@endsection
+
+
+@section('script')
+ {{-- show automatically modal status --}}
+ <script>
+    $('#modalStatus').modal('show')
+</script>
 @endsection

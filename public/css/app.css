@@ -11027,3 +11027,7 @@ body#container {
   border-radius: 50%;
 }
 
+.bg-inherit {
+  background-color: inherit !important;
+}
+
