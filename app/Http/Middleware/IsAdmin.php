@@ -22,11 +22,16 @@ class IsAdmin
         if (Gate::allows('admin',Auth::user())) {
             //authenticated user is admin
             return $next($request);
+            
         }else{
             //authenticated user does not admin
+
             Auth::logout();//logot user
+
             $request->session()->flush(); //remove all sessions
+
             $request->session()->flash('error','email or password is not correct.');//flash error messsge
+
             return redirect('/');//redirecto to login page
         }
 
