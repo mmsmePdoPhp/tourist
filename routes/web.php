@@ -1,7 +1,5 @@
 <?php
 
-use App\User;
-use Illuminate\Routing\RouteGroup;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -23,6 +21,9 @@ Route::get('/', function () {
 
 Route::group(['middleware' => ['isAdmin']], function () {
 
+    Route::get('gate', function () {
+        return 'hi from gate';
+    });
 
 
     Route::resource('users', 'UserController');
