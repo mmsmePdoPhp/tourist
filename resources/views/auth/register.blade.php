@@ -1,10 +1,31 @@
-@extends('layouts.layoutPoor')
+@extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper" id="app" v-cloak>
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h3 class="m-0 text-dark"><em>Register Users</em></h3>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="{{route('users.index')}}">Categories</a></li>
+              <li class="breadcrumb-item active"><a href="{{route('home')}}">Dashboard</a></li>
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+<div class="container-fluid">
+    <div class="row  justify-content-center">
+        <div class="col-md-8 ">
+
+            <div class="card bg-indigo">
                 <div class="card-header">{{ __('Register') }}</div>
 
                 <div class="card-body">
@@ -64,13 +85,14 @@
 
 
                         <div class="form-group row">
-                            <label for="roles" class="col-md-4 col-form-label text-md-right">{{ __('roles') }}</label>
+                            <label for="roles" class="col-md-4 col-form-label text-md-right">{{ __('User Roles') }}</label>
 
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="my-select">Text</label>
-                                    <select id="my-select" class="form-control" name="" multiple>
-                                        <option>Text</option>
+                                    <select id="my-select" class="form-control" name="roles[]" multiple>
+                                        @foreach ($roles as $role)
+                                            <option value="{{$role->id}}">{{$role->name}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                                 @error('roles')
@@ -83,9 +105,9 @@
 
 
                         <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
+                            <div class="col-md-6 offset-md-4 text-center">
+                                <button type="submit" class="btn bg-blue">
+                                    {{ __('Register User') }}
                                 </button>
                             </div>
                         </div>

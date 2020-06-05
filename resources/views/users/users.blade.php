@@ -49,11 +49,11 @@
                             <div class="col">
                                 <span class="badge badge-info text-light float-right">{{$user->id}}</span>
                                 <ul class="list-group list-group-flush mt-0">
-                                    {{-- @foreach (\App\Http\Controllers\UserController::roleNmaes($user) as $role)
-                                        <li class="list-group-item"><strong>Role {{array_search($role,\App\Http\Controllers\UserController::roleNmaes($user)->toArray())+1}}: </strong>&nbsp;
-                                            <span>{{$role}}</span>
+                                    @foreach ($user->roles as $role)
+                                        <li class="list-group-item"><strong>Role</strong>&nbsp;
+                                            <span>{{$role->name}}</span>
                                         </li>
-                                    @endforeach --}}
+                                    @endforeach
                                 </ul>
                             </div>
                             <ul class="list-group list-group-flush border-top">
