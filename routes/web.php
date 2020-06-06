@@ -70,6 +70,8 @@ Route::group(['middleware' => ['isAdmin']], function () {
 
     Route::resource('city', 'CityController');
 
+    Route::post('role/restore', 'RoleController@restore')->name('role.restore');
+    Route::get('role/trashed', 'RoleController@trashed')->name('role.trashed');
     Route::resource('role', 'RoleController');
 
     Route::resource('post', 'PostController');

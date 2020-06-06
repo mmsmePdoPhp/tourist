@@ -297,7 +297,7 @@
                 </a>
               </li>
               <li class="nav-item bg-trashed">
-                <a href="" class="nav-link">
+                <a href="{{route('role.trashed')}}" class="nav-link">
                     <i class="nav-icon fas fa-trash-alt"></i>
                     <p>Trshed</p>
                 </a>
