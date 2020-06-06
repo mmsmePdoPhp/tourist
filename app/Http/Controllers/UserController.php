@@ -23,15 +23,6 @@ class UserController extends Controller
         return view('users.users',compact('users'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -134,10 +125,61 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::withTrashed()->where('id',$id)->first();
+        //trash user or remove it just for now
+        if($user->trashed()){
+            //remove all roles that has
+            $user->roles()->sync([]);
+            //force delete
+            if($user->forceDelete()){
+                session()->flash('success','user successfully complete forceDeleted!');
+                return back();
+            }else{
+                session()->flash('error','user does not complete forceDeleted!!');
+                return back();
+            }
+        }else{
+            if($user->delete()){
+                session()->flash('success','user successfully deleted!');
+                return back();
+            }else{
+                session()->flash('error','user does not deleted!');
+                return back();
+            }
+        }
+
     }
 
+    /**
+     * show trashed view for removed users
+     */
+    public function trashed(){
+        $users = User::onlyTrashed()->paginate(9);
+        return view('users.trashed', compact('users'));
+    }
 
+    /**
+     * restore user by post type
+     */
+    public function restore(Request $request){
+        //validate
+        $validatedData = $request->validate([
+            'id' => 'bail|required|integer'
+        ]);
+        $user= User::onlyTrashed()->where('id',$validatedData['id'])->first();
+        if($user->restore()){
+            session()->flash('success','user successfully restored!');
+            return back();
+        }else{
+            session()->flash('error','user does not restored!');
+            return back();
+        }
+    }
+
+    /**
+     * check id in array for select option user roles
+     * @return string
+     */
     public static function hanyMethod($id, $current=null,array $old =null){
         if($old !==null){
             if(in_array($id,$old)){

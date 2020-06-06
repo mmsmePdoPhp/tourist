@@ -63,17 +63,15 @@
                                 <li class="list-group-item"><strong>Email: </strong>&nbsp;{{$user->email}}</li>
                                 <li class="list-group-item"><strong>Created At: </strong>&nbsp;{{\Carbon\Carbon::createFromTimeStamp(strtotime($user->created_at))->diffForHumans()}}</li>
                                 <li class="list-group-item"><strong>Created At: </strong>&nbsp;{{\Carbon\Carbon::createFromTimeStamp(strtotime($user->updated_at))->diffForHumans()}}</li>
+                                <li class="list-group-item"><strong>Deleted At: </strong>&nbsp;{{\Carbon\Carbon::createFromTimeStamp(strtotime($user->deleted_at))->diffForHumans()}}</li>
                             </ul>
 
                         </div>
 
                         <div class="card-footer btn-group m-0 p-0" role="group" aria-label="Basic example">
 
-                            <a href="{{route('users.show',$user->id)}}" class="btn btn-sm col bg-blue" data-toggle="tooltip" data-placement="bottom" title="edit user">
-                                <i class="nav-icon fas fa-user-edit"></i>
-                            </a>
 
-                            <form action="{{route('users.destroy',$user->id)}}" class="m-0 p-0 btn btn-sm btn-danger col" method="post">
+                            <form action="{{route('users.destroy',$user->id)}}" class="btn"  method="post">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-sm col bg-danger" data-toggle="tooltip" data-placement="bottom" title="remvoe user">
@@ -81,9 +79,13 @@
                                 </button>
                             </form>
 
-                            <a class="btn btn-sm col bg-indigo" data-toggle="tooltip" data-placement="bottom" title="more details">
-                                <i class="nav-icon fas fa-id-card"></i>
-                            </a>
+                            <form action="{{route('users.restore')}}" method="POST" class="btn">
+                                @csrf
+                                <input type="hidden" value="{{$user->id}}" name="id" id="id">
+                                <button class="btn btn-sm col bg-primary" data-toggle="tooltip" data-placement="bottom" title="restore user">
+                                    <i class="nav-icon fas fa-trash-restore"></i>
+                                </button>
+                            </form>
 
                         </div>
 

@@ -65,7 +65,7 @@
                 </a>
               </li>
               <li class="nav-item bg-trashed">
-                <a href="" class="nav-link">
+                <a href="{{route('users.trashed')}}" class="nav-link">
                     <i class="nav-icon fas fa-user-times"></i>
                     <p>Trshed</p>
                 </a>

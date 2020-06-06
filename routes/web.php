@@ -48,6 +48,8 @@ Route::group(['middleware' => ['isAdmin']], function () {
     });
 
 
+    Route::post('/users/restore', 'UserController@restore')->name('users.restore');
+    Route::get('/users/trashed', 'UserController@trashed')->name('users.trashed');
     Route::resource('users', 'UserController');
 
     //all routes for category
