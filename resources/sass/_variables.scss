@@ -1,0 +1,50 @@
+// Body
+$body-bg: #f8fafc;
+
+// Typography
+$font-family-sans-serif: 'Nunito', sans-serif;
+$font-size-base: 0.9rem;
+$line-height-base: 1.6;
+
+// Colors
+$blue: #3490dc;
+$indigo: #6574cd;
+$purple: #9561e2;
+$pink: #f66d9b;
+$red: #e3342f;
+$orange: #f6993f;
+$yellow: #ffed4a;
+$green: #38c172;
+$teal: #4dc0b5;
+$cyan: #6cb2eb;
+
+.lightblue {
+    background-color: rgb(79, 107, 230);
+}
+
+
+.text-orange{
+    color:$orange !important ;
+}
+
+.text-indigo{
+    color:$indigo !important;
+}
+
+.bg-snow{
+    background-color:snow !important;
+}
+.bg-cornflowerblue{
+    background-color: rgb(79, 14, 184) !important;
+}
+
+.bg-steelblue {
+    background-color: steelblue !important;
+}
+
+.bg-trashed{
+    background: rgb(223, 54, 104) !important;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to bottom, rgb(230, 42, 236), rgb(113, 26, 128));  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to bottom, rgb(208, 38, 38), rgb(216, 113, 44)); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}

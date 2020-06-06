@@ -1,0 +1,104 @@
+<?php
+
+namespace App\Http\Controllers\Auth;
+
+use App\Http\Controllers\Controller;
+use App\Providers\RouteServiceProvider;
+use App\Role;
+use App\User;
+use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\Validator;
+
+class RegisterController extends Controller
+{
+    /*
+    |--------------------------------------------------------------------------
+    | Register Controller
+    |--------------------------------------------------------------------------
+    |
+    | This controller handles the registration of new users as well as their
+    | validation and creation. By default this controller uses a trait to
+    | provide this functionality without requiring any additional code.
+    |
+    */
+
+    use RegistersUsers;
+
+    /**
+     * Where to redirect users after registration.
+     *
+     * @var string
+     */
+    protected $redirectTo = RouteServiceProvider::HOME;
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware(['isAdmin']);
+    }
+
+    /**
+     * Get a validator for an incoming registration request.
+     *
+     * @param  array  $data
+     * @return \Illuminate\Contracts\Validation\Validator
+     */
+    protected function validator($request)
+    {
+        return $validatedData =  $request->validate ([
+            'name' => 'bail|required|string|max:255',
+            'email' => 'bail|required|string|email|max:255',
+            'password' => 'bail|required|string|min:8|confirmed',
+            'roles' => 'bail|required|array',
+        ]);
+    }
+
+    /**
+     * Create a new user instance after a valid registration.
+     *
+     * @param  array  $data
+     * @return \App\User
+     */
+    protected function create(array $data)
+    {
+
+        DB::beginTransaction();
+        try {
+            $user = User::create([
+                'name' => $data['name'],
+                'email' => $data['email'],
+                'password' => Hash::make($data['password']),
+            ]);
+            if($user->email == $data['email']){
+                //attach or sync values
+                $user->roles()->attach($data['roles']);
+
+                DB::commit();
+
+            }else{
+                DB::rollback();
+                session()->flash('error','user does not updated  not equal!');
+                return back()->withInput();
+            }
+
+            // all good
+        } catch (\Exception $e) {
+            DB::rollback();
+            // something went wrong
+            session()->flash('error','user does not updated  not equal!');
+            return back()->withInput();
+        }
+
+
+
+
+        return $user;
+    }
+}
