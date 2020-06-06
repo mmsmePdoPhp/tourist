@@ -38,19 +38,22 @@
 
             @foreach ($users as $user)
                 {{-- show user informations --}}
-                <div class="col-sm-6 col-md-6 col-lg-4 ">
+                <div class="col-sm-6 col-md-6 col-lg-4">
 
-                    <div class="card m-auto " style="width: 18rem;">
+
+                    <div class="card mb-2  " style="width: 18rem;">
                         <div class="card-body row">
                             <div class="col-4">
                                 <img class="img-circle float-right" width="60px" height="60px" src="{{asset('uploaded/'.($user->image !=null ? $user->image : 'default-avatar.png'))}}" alt="...">
-                                <h5 class="text-center" title="{{$user->name}}">&nbsp;{{substr($user->name,0,6)}}</h5>
+                                <h5 class="text-center res-text" title="{{$user->name}}">&nbsp;{{substr($user->name,0,6)}}</h5>
                             </div>
                             <div class="col">
                                 <span class="badge badge-info text-light float-right">{{$user->id}}</span>
                                 <ul class="list-group list-group-flush mt-0">
                                     @foreach ($user->roles as $role)
-                                        <li class="list-group-item"><strong>Role</strong>&nbsp;
+                                        <li class="list-group-item"><strong>
+                                            <i class="fas fa-user-tag"></i>
+                                        </strong>&nbsp;
                                             <span>{{$role->name}}</span>
                                         </li>
                                     @endforeach
@@ -58,11 +61,24 @@
                             </div>
                             <ul class="list-group list-group-flush border-top">
                                 <li class="list-group-item"><strong>Email: </strong>&nbsp;{{$user->email}}</li>
-                                <li class="list-group-item"><strong>Created At: </strong>&nbsp;{{date('Y-m-d h:m:s', strtotime($user->created_at))}}</li>
+                                <li class="list-group-item"><strong>Created At: </strong>&nbsp;{{\Carbon\Carbon::createFromTimeStamp(strtotime($user->created_at))->diffForHumans()}}</li>
+                                <li class="list-group-item"><strong>Created At: </strong>&nbsp;{{\Carbon\Carbon::createFromTimeStamp(strtotime($user->updated_at))->diffForHumans()}}</li>
                             </ul>
-                            <div class="card-body text-center my-0 py-2">
-                                <a href="#" @click.prevent = "toggleUpdateFormUser" class=" btn btn-info py-1 px-3 text-white">Edit</a>
-                            </div>
+
+                        </div>
+
+                        <div class="card-footer btn-group m-0 p-0" role="group" aria-label="Basic example">
+
+                            <a href="{{route('users.show',$user->id)}}" class="btn btn-sm col bg-blue" data-toggle="tooltip" data-placement="bottom" title="edit user">
+                                <i class="nav-icon fas fa-user-edit"></i>
+                            </a>
+                            <a class="btn btn-sm col bg-danger" data-toggle="tooltip" data-placement="bottom" title="remvoe user">
+                                <i class="nav-icon fas fa-user-times"></i>
+                            </a>
+                            <a class="btn btn-sm col bg-indigo" data-toggle="tooltip" data-placement="bottom" title="more details">
+                                <i class="nav-icon fas fa-id-card"></i>
+                            </a>
+
                         </div>
 
                     </div>
@@ -70,17 +86,14 @@
                 </div>
             @endforeach
 
-            <div class="row justify-content-center">
-                {{ $users->onEachSide(2)->links() }}
-            </div>
 
 
         </div><!-- /.container-fluid -->
 
         <hr>
-        <div class="row justify-content-center mt-1">
-            <div class="col-4 m-auto justify-content-center">
-                <p class="text-center m-auto"> {{ $users->onEachSide(1)->links() }}</p>
+        <div class="row rounded justify-content-center p-0 bg-dark">
+            <div class="text-center my-auto pt-3 ">
+               {{ $users->onEachSide(1)->links() }}
             </div>
         </div>
         </section>

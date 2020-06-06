@@ -11031,3 +11031,25 @@ body#container {
   background-color: inherit !important;
 }
 
+.res-text {
+  font-size: 0.7rem;
+}
+
+@media (min-width: 576px) {
+  .res-text {
+    font-size: 0.87rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .res-text {
+    font-size: 0 0.8rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .res-text {
+    font-size: 0.9rem;
+  }
+}
+

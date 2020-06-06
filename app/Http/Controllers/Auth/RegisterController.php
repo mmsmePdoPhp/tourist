@@ -9,6 +9,7 @@ use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
@@ -49,13 +50,13 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    protected function validator(array $data)
+    protected function validator($request)
     {
-        return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'roles' => ['required', 'array'],
+        return $validatedData =  $request->validate ([
+            'name' => 'bail|required|string|max:255',
+            'email' => 'bail|required|string|email|max:255',
+            'password' => 'bail|required|string|min:8|confirmed',
+            'roles' => 'bail|required|array',
         ]);
     }
 
@@ -75,7 +76,7 @@ class RegisterController extends Controller
                 'email' => $data['email'],
                 'password' => Hash::make($data['password']),
             ]);
-            if($user->email = $data['email']){
+            if($user->email == $data['email']){
                 //attach or sync values
                 $user->roles()->attach($data['roles']);
 
@@ -83,12 +84,16 @@ class RegisterController extends Controller
 
             }else{
                 DB::rollback();
+                session()->flash('error','user does not updated  not equal!');
+                return back()->withInput();
             }
 
             // all good
         } catch (\Exception $e) {
             DB::rollback();
             // something went wrong
+            session()->flash('error','user does not updated  not equal!');
+            return back()->withInput();
         }
 
 

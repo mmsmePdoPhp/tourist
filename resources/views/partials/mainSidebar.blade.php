@@ -46,7 +46,7 @@
 
           <li class="nav-item has-treeview bg-cornflowerblue">
             <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-book"></i>              <p>
+                <i class="nav-icon fas fa-users"></i>              <p>
                     users
                 <i class="fas fa-angle-left right"></i>
               </p>
@@ -54,19 +54,19 @@
             <ul class="nav nav-treeview bg-navy">
               <li class="nav-item bg-cyan">
                 <a href="{{route('register')}}" class="nav-link">
-                    <i class="nav-icon fa fa-plus" aria-hidden="true"></i>
+                    <i class="nav-icon fa fa-user-plus" aria-hidden="true"></i>
                     <p>New</p>
                 </a>
               </li>
               <li class="nav-item bg-blue">
                 <a href="{{route('users.index')}}" class="nav-link">
-                    <i class="nav-icon fas fa-book-open"></i>
+                    <i class="nav-icon fa fa-server"></i>
                     <p>All Users</p>
                 </a>
               </li>
               <li class="nav-item bg-trashed">
                 <a href="" class="nav-link">
-                    <i class="nav-icon fas fa-trash-alt"></i>
+                    <i class="nav-icon fas fa-user-times"></i>
                     <p>Trshed</p>
                 </a>
               </li>
@@ -75,7 +75,7 @@
           </li>
           <li class="nav-item has-treeview bg-cornflowerblue">
             <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-book"></i>              <p>
+                <i class="nav-icon fas fa-list"></i>              <p>
                     cateogry
                 <i class="fas fa-angle-left right"></i>
               </p>

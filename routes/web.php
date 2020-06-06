@@ -88,7 +88,7 @@ Route::group(['middleware' => ['isAdmin']], function () {
      * test some thing in here
      */
 
-    Route::group(['prefix' => '    '], function () {
+    Route::group(['prefix' => 'test'], function () {
         Route::get('isAdmin', function () {
             // return Auth::user()->roles()->sync([4,5,6]);
             return (Auth::user()->isAdmin);
