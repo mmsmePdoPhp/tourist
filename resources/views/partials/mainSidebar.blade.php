@@ -278,8 +278,8 @@
           </li>
           <li class="nav-item has-treeview bg-cornflowerblue">
             <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-book"></i>              <p>
-                role
+                <i class="nav-icon fas fa-user-tag"></i>              <p>
+                roles
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
@@ -292,7 +292,7 @@
               </li>
               <li class="nav-item bg-blue">
                 <a href="{{route('role.index')}}" class="nav-link">
-                    <i class="nav-icon fas fa-book-open"></i>
+                    <i class="nav-icon fas fa-id-card"></i>
                     <p>All Roles</p>
                 </a>
               </li>
