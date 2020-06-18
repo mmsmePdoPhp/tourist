@@ -71,5 +71,44 @@ class User extends Authenticatable
 
 
 
+    /**
+     * check is user retail
+     */
+    public static function getIsRetailAttribute(){
+        $result = Auth::user()->roles->filter(function($value, $key){
+            if($value->name ==='retail'){
+                return true;
+            }
+        });
+        if(count($result) === 0){
+            return false;
+        }else{
+            if($result[0]->name =='retail'){
+                return true;
+            }else{
+                return false;
+            }
+        }
+    }
+
+ /**
+     * check is user retail
+     */
+    public static function getIsWholesalerAttribute(){
+        $result = Auth::user()->roles->filter(function($value, $key){
+            if($value->name ==='wholesaler'){
+                return true;
+            }
+        });
+        if(count($result) === 0){
+            return false;
+        }else{
+            if($result[0]->name =='wholesaler'){
+                return true;
+            }else{
+                return false;
+            }
+        }
+    }
 
 }

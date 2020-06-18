@@ -7,6 +7,7 @@ use App\Providers\RouteServiceProvider;
 use App\Role;
 use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Request;
@@ -42,6 +43,13 @@ class RegisterController extends Controller
     public function __construct()
     {
         $this->middleware(['isAdmin']);
+        $this->authorize('viewAny', Auth::user());
+        $this->authorize('create', Auth::user());
+        $this->authorize('view', Auth::user());
+        $this->authorize('update', Auth::user());
+        $this->authorize('delete', Auth::user());
+        $this->authorize('restore', Auth::user());
+        $this->authorize('forceDelete', Auth::user());
     }
 
     /**
