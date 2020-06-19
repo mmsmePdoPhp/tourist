@@ -41,12 +41,6 @@ Route::group(['middleware' => ['isAdmin']], function () {
     Route::get('newCategory','CategoryController@newCategory')->name("cateogry.new");
 
 
-
-
-
-
-
-
     Route::resource('city', 'CityController');
 
     Route::resource('role', 'RoleController');

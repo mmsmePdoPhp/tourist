@@ -10969,6 +10969,24 @@ body#container {
   height: 100vh;
 }
 
+.dir-rtl {
+  direction: rtl !important;
+}
+
+.dir-ltr {
+  direction: ltr !important;
+}
+
+.ents-active:active {
+  background-color: green !important;
+}
+
+.ents-active:focus {
+  background-color: crimson !important;
+  box-shadow: 1px 1px 1px darkblue;
+  border-color: darkcyan;
+}
+
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.5s;

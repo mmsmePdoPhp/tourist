@@ -12,7 +12,7 @@
      <!-- Sidebar -->
      <div class="sidebar">
          <!-- Sidebar user panel (optional) -->
-         <div class="user-panel pb-3 d-flex justify-content-between">
+         <div class="user-panel d-flex justify-content-between">
 
 
              <div class="info row">
@@ -21,7 +21,9 @@
                      <button type="submit" class="bg-inherit btn justify-content-center my-0">
                          <img src="{{ asset('uploaded/default-avatar.png') }}" title="exit"
                              alt="logout icon" class="brand-image m-auto img-circle elevation-2" style="opacity: .8">
-                         <a href="" title="profile" class="ml-0 pl-1 col-7">prifile</a>
+                            <a href="" title="profile" class="ml-0 pl-1 col-7">
+                                {{Auth::user()->name}}
+                            </a>
                      </button>
                  </form>
              </div>
@@ -35,6 +37,15 @@
                      </button>
                  </form>
              </div>
+
+         </div>
+
+         <div class="user-panel pb-0 pt-1 ">
+            <p class="text-light text-center pb-0">
+                @foreach (Auth::user()->roles as $role)
+                    {{$role->name}} وارد شده با عنوان
+                @endforeach
+            </p>
          </div>
 
          <!-- Sidebar Menu -->
@@ -44,7 +55,7 @@
                  <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
 
-               @can('viewAny',Auth::user())
+                @can('viewAny',Auth::user())
                     <!-- The Current User Can Update The Post -->
 
                     <li class="nav-item has-treeview bg-cornflowerblue">
@@ -77,7 +88,7 @@
 
                         </ul>
                     </li>
-                 @elsecan('create', App\Post::class)
+                @elsecan('create', App\Post::class)
                         <!-- The Current User Can Create New Post -->
                 @endcan
 
