@@ -23,16 +23,16 @@
                                 <div class="col-5">
                                     {{-- first name --}}
                                     <div class="form-group row">
-                                        <label for="name"
+                                        <label for="fname"
                                             class="col-md-4 col-form-label text-center">{{ __('نام') }}</label>
 
                                         <div class="col-md-6">
-                                            <input id="name" type="text"
-                                                class="form-control @error('name') is-invalid @enderror" name="name"
-                                                value="{{ old('name') }}" required autocomplete="name"
+                                            <input id="fname" type="text"
+                                                class="form-control @error('fname') is-invalid @enderror" name="fname"
+                                                value="{{ old('fname') }}" required autocomplete="fname"
                                                 autofocus>
 
-                                            @error('name')
+                                            @error('fname')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
@@ -49,7 +49,7 @@
 
                                         <div class="col-md-6">
                                             <input id="lname" type="text"
-                                                class="form-control @error('lname') is-invalid @enderror" lname="lname"
+                                                class="form-control @error('lname') is-invalid @enderror" name="lname"
                                                 value="{{ old('lname') }}" required autocomplete="lname"
                                                 autofocus>
 
@@ -76,7 +76,7 @@
                                             <input id="state" type="text"
                                                 class="form-control @error('state') is-invalid @enderror" state="state"
                                                 value="{{ old('state') }}" required autocomplete="state"
-                                                autofocus>
+                                                autofocus name="state">
 
                                             @error('state')
                                                 <span class="invalid-feedback" role="alert">
@@ -97,7 +97,7 @@
                                             <input id="city" type="text"
                                                 class="form-control @error('city') is-invalid @enderror" city="city"
                                                 value="{{ old('city') }}" required autocomplete="city"
-                                                autofocus>
+                                                autofocus name="city">
 
                                             @error('city')
                                                 <span class="invalid-feedback" role="alert">
@@ -120,7 +120,7 @@
                                     <input id="address" type="text"
                                         class="form-control @error('address') is-invalid @enderror" address="address"
                                         value="{{ old('address') }}" required autocomplete="address"
-                                        autofocus>
+                                        autofocus name="address">
 
                                     @error('address')
                                         <span class="invalid-feedback" role="alert">
@@ -142,7 +142,7 @@
                                     <input id="postCode" type="number"
                                         class="form-control @error('postCode') is-invalid @enderror" postCode="postCode"
                                         value="{{ old('postCode') }}" required autocomplete="postCode"
-                                        autofocus>
+                                        autofocus name="postCode">
 
                                     @error('postCode')
                                         <span class="invalid-feedback" role="alert">
@@ -275,16 +275,16 @@
                             <div class="wholesaler d-none">
                                 {{-- companyName --}}
                                 <div class="form-group row">
-                                    <label for="companyNae"
+                                    <label for="companyName"
                                         class="col-md-4 col-form-label text-center">{{ __('نام شرکت') }}</label>
 
                                     <div class="col-md-6">
-                                        <input id="companyNae" type="text"
-                                            class="form-control @error('companyNae') is-invalid @enderror"
-                                            companyNae="companyNae" value="{{ old('companyNae') }}"
-                                            required autocomplete="companyNae" autofocus>
+                                        <input id="companyName" type="text"
+                                            class="form-control @error('companyName') is-invalid @enderror"
+                                            name="companyName" value="{{ old('companyName') }}"
+                                            required autocomplete="companyName" autofocus>
 
-                                        @error('companyNae')
+                                        @error('companyName')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
@@ -297,13 +297,13 @@
 
                             {{-- national card image --}}
                             <div class="form-group row">
-                                <label for="password"
+                                <label for="nationalCode"
                                     class="col-md-4 col-form-label text-center">{{ __('تصویر کارت ملی') }}</label>
 
                                 <div class="col-md-6 text-center">
 
                                     <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="customFileLang" lang="es">
+                                        <input type="file" class="custom-file-input" name="" id="customFileLang" lang="es">
                                         <label class="custom-file-label" for="customFileLang">آپلود عکس</label>
                                     </div>
 

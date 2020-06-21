@@ -14,6 +14,7 @@ class UserSeeeder extends Seeder
      */
     public function run()
     {
+        /*
         //create admin user
         $admin = DB::table('users')->insert([
             'name'=>'admin',
@@ -49,6 +50,7 @@ class UserSeeeder extends Seeder
             $user->roles()->attach([3]);
 
         }
+        */
 
     }
 }

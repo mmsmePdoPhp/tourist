@@ -42,14 +42,14 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware(['isAdmin']);
-        $this->authorize('viewAny', Auth::user());
-        $this->authorize('create', Auth::user());
-        $this->authorize('view', Auth::user());
-        $this->authorize('update', Auth::user());
-        $this->authorize('delete', Auth::user());
-        $this->authorize('restore', Auth::user());
-        $this->authorize('forceDelete', Auth::user());
+        // $this->middleware(['isAdmin']);
+        // $this->authorize('viewAny', Auth::user());
+        // $this->authorize('create', Auth::user());
+        // $this->authorize('view', Auth::user());
+        // $this->authorize('update', Auth::user());
+        // $this->authorize('delete', Auth::user());
+        // $this->authorize('restore', Auth::user());
+        // $this->authorize('forceDelete', Auth::user());
     }
 
     /**
@@ -60,11 +60,19 @@ class RegisterController extends Controller
      */
     protected function validator($request)
     {
-        return $validatedData =  $request->validate ([
-            'name' => 'bail|required|string|max:255',
+        return request()->validate([
+            'fname' => 'bail|required|string|max:255',
+            'lname' => 'bail|required|string|max:255',
+            'state' => 'bail|required|string|max:255',
+            'city' => 'bail|required|string|max:255',
+            'address' => 'bail|required|string|max:255',
+            'postCode' => 'bail|required|string|max:255',
             'email' => 'bail|required|string|email|max:255',
+            'fixedPhone' => 'bail|required|string|max:255',
+            'phone' => 'bail|required|string|max:255',
             'password' => 'bail|required|string|min:8|confirmed',
             'roles' => 'bail|required|array',
+            'companyName' =>'bail|required|string|255',
         ]);
     }
 
