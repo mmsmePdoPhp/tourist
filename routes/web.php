@@ -1,5 +1,6 @@
 <?php
 
+use App\Role;
 use Illuminate\Auth\Access\Gate;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -24,18 +25,26 @@ Route::get('/', function () {
     }
 });
 
+Route::get('userRegister', function() {
+    $roles = Role::all()->filter(function($role){
+        if($role->name == 'admin'){
+
+        }else{
+            return $role;
+        }
+    });
+    return view('auth.userRegister')->withRoles($roles);
+})->name('userRegister');
+
+
 Route::group(['middleware' => ['isAdmin']], function () {
 
-    Route::get('gate', function () {
-        return 'hi from gate';
-    });
 
 
     Route::post('/users/restore', 'UserController@restore')->name('users.restore');
     Route::get('/users/trashed', 'UserController@trashed')->name('users.trashed');
 
     Route::resource('users', 'UserController');
-
     //all routes for category
     Route::resource('cateogry', 'CategoryController');
     Route::get('newCategory','CategoryController@newCategory')->name("cateogry.new");

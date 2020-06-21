@@ -15,11 +15,7 @@
             <div class="card dir-rtl">
                 <div class="card-header">{{ __('صفحه ی ورود') }}
 
-                    <div class="btn-group float-right dir-ltr" role="group" aria-label="Basic example">
-                        <button type="button" class="btn btn-md btn-dark ents-active">ثبت نام</button>
-                        <button type="button" class="btn btn-md btn-dark" disabled></button>
-                        <button type="button" class="btn btn-md btn-dark ents-active">ورود</button>
-                    </div>
+                   @include('partials.enteryNavbar')
                 </div>
 
 
