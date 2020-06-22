@@ -1,12 +1,30 @@
-//  show conditionaly signup form for type of user
-$(document).ready(function(){
-    $('.userType').change(function(e){
-        let id = e.target.value;
-        if(id == 3){
-            $(".wholesaler").removeClass('d-none');
+import Vue from 'vue'
+
+
+var Reg = new Vue({
+    el:'#register',
+    data:{
+        roleId:null,
+    },
+    methods:{
+        changeRoleId(e){
+            let index = (e.target.options.selectedIndex)
+            this.roleId = (e.target.options[index].value)
         }
-        else if(id == 2) {
-            $(".wholesaler").addClass('d-none');
+    },
+    computed:{
+        isWholesaler(){
+            if(this.roleId == 3){
+                return true;
+            }else{
+                return false;
+            }
         }
-    })
+    },
+    mounted(){
+        let index = (this.$refs.roleId.options.selectedIndex)
+        this.roleId = (this.$refs.roleId.options[index].value)
+    }
 })
+
+

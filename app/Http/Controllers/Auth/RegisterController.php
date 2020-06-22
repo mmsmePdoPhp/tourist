@@ -60,20 +60,23 @@ class RegisterController extends Controller
      */
     protected function validator($request)
     {
-        return request()->validate([
-            'fname' => 'bail|required|string|max:255',
-            'lname' => 'bail|required|string|max:255',
-            'state' => 'bail|required|string|max:255',
-            'city' => 'bail|required|string|max:255',
-            'address' => 'bail|required|string|max:255',
-            'postCode' => 'bail|required|string|max:255',
-            'email' => 'bail|required|string|email|max:255',
-            'fixedPhone' => 'bail|required|string|max:255',
-            'phone' => 'bail|required|string|max:255',
-            'password' => 'bail|required|string|min:8|confirmed',
-            'roles' => 'bail|required|array',
-            'companyName' =>'bail|required|string|255',
-        ]);
+        //if isseted roleId
+        if($request['roleId'] == 3){
+            
+            return $this->wholesalerValidation();
+
+        }elseif($request['roleId'] == 2){
+
+            return $this->retailValidation();
+
+        }else{
+            dd('hi choni someyieh gyan');
+            return request()->validate(['roleId'=>'required']);
+
+        }
+
+
+
     }
 
     /**
@@ -88,9 +91,15 @@ class RegisterController extends Controller
         DB::beginTransaction();
         try {
             $user = User::create([
-                'name' => $data['name'],
+                'fname' => $data['fname'],
+                'lname' => $data['lname'],
+                'address' => $data['address'],
+                'postCode' => $data['postCode'],
                 'email' => $data['email'],
+                'fixedPhone' => $data['fixedPhone'],
+                'phone' => $data['phone'],
                 'password' => Hash::make($data['password']),
+
             ]);
             if($user->email == $data['email']){
                 //attach or sync values
@@ -116,5 +125,55 @@ class RegisterController extends Controller
 
 
         return $user;
+    }
+
+    /**
+     * validation for user type retail
+     */
+    private function retailValidation(){
+        return request()->validate([
+            'fname' => 'bail|required|string|max:45|min:3',
+            'lname' => 'bail|required|string|max:45|min:3',
+
+            'state_id' => 'bail|required|numeric',
+            'city_id' => 'bail|required|numeric',
+
+            'address' => 'bail|required|string|max:80|min:10',
+            'postCode' => 'bail|required|string|max:20|min:10',
+            'email' => 'bail|required|string|email|max:255',
+            'fixedPhone' => 'bail|required|string|max:15|min:11',
+            'phone' => 'bail|required|string|max:15|min:11',
+            'password' => 'bail|required|string|min:8|confirmed',
+            'roleID' => 'bail|required|array',
+            'nationalCardImage' => 'bail|required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'contractImage' => 'bail|required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+
+        ]);
+    }
+
+
+    /**
+     * validation for user type wholesaler
+     */
+    private function wholesalerValidation(){
+        return request()->validate([
+            'fname' => 'bail|required|string|max:45|min:3',
+            'lname' => 'bail|required|string|max:45|min:3',
+
+            'state_id' => 'bail|required|numeric',
+            'city_id' => 'bail|required|numeric',
+
+            'address' => 'bail|required|string|max:80|min:10',
+            'postCode' => 'bail|required|string|max:20|min:10',
+            'email' => 'bail|required|string|email|max:255',
+            'fixedPhone' => 'bail|required|string|max:15|min:11',
+            'phone' => 'bail|required|string|max:15|min:11',
+            'password' => 'bail|required|string|min:8|confirmed',
+            'roleID' => 'bail|required|array',
+            'companyName' =>'bail|required|string|max:45|min:5',
+            'nationalCardImage' => 'bail|required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'contractImage' => 'bail|required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+
+        ]);
     }
 }
