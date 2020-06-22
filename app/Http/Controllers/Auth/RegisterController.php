@@ -2,15 +2,18 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\City;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Role;
+use App\State;
 use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
@@ -62,7 +65,7 @@ class RegisterController extends Controller
     {
         //if isseted roleId
         if($request['roleId'] == 3){
-            
+
             return $this->wholesalerValidation();
 
         }elseif($request['roleId'] == 2){
@@ -90,9 +93,15 @@ class RegisterController extends Controller
 
         DB::beginTransaction();
         try {
+
+            // if iformation was saved
+            $nationalCard = Storage::put('nationalCard', $data['nationalCardImage']);
+            $contractImage = Storage::put('contract', $data['contractImage']);
+
             $user = User::create([
                 'fname' => $data['fname'],
                 'lname' => $data['lname'],
+
                 'address' => $data['address'],
                 'postCode' => $data['postCode'],
                 'email' => $data['email'],
@@ -101,9 +110,23 @@ class RegisterController extends Controller
                 'password' => Hash::make($data['password']),
 
             ]);
+
+
+
             if($user->email == $data['email']){
                 //attach or sync values
-                $user->roles()->attach($data['roles']);
+                $user->roles()->attach($data['roleId']);
+
+                // save state
+                $state = new State();
+                $state->state = $data['state_id'];
+                $user->state()->save($state);
+
+
+                // save city
+                $city = new City();
+                $city->city = $data['city_id'];
+                $user->city()->save($city);
 
                 DB::commit();
 

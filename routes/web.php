@@ -1,8 +1,9 @@
 <?php
 
+use App\City;
 use App\Role;
-use Illuminate\Auth\Access\Gate;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,7 +16,17 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('saveStates', function () {
+    // $response = Http::get('http://127.0.0.1:8000/json/home.json');
+    // echo $response->json();
 
+    
+
+
+
+});
+
+// example upload file
 
 Route::get('/', function () {
     if(Auth::guest()){
