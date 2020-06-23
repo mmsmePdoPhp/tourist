@@ -53520,18 +53520,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_3__);
 
 
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
-
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
@@ -53544,16 +53532,34 @@ var Reg = new vue__WEBPACK_IMPORTED_MODULE_1___default.a({
   data: {
     roleId: null,
     locations: [],
+    // all locations get by ajax
     states: [],
+    // all location object filtered by state
     userState: '',
-    filteredStates: ''
+    // state string typed by user from input
+    filteredStates: '',
+    // just for now is useless maybe later,
+    cities: [],
+    // all location object filtered by city
+    userCity: '' //city string typed by user from input
+
   },
   methods: {
+    /**
+     * change role id
+     * @param {event} e event object when click on element
+     */
     changeRoleId: function changeRoleId(e) {
       var index = e.target.options.selectedIndex;
       this.roleId = e.target.options[index].value;
     },
-    getLocations: function getLocations(callback) {
+
+    /**
+     *  get all location by ajax from api
+     *
+     * @param {uniqueState or uniqueCity} callback uniqueState or uniqueCity function
+     */
+    getLocations: function getLocations(callbackState, callbackCity) {
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
@@ -53569,29 +53575,42 @@ var Reg = new vue__WEBPACK_IMPORTED_MODULE_1___default.a({
               case 3:
                 response = _context.sent;
                 _this.locations = response.data;
-                callback(_this.locations);
-                _context.next = 11;
+                callbackState(_this.locations);
+                callbackCity(_this.locations);
+                _context.next = 12;
                 break;
 
-              case 8:
-                _context.prev = 8;
+              case 9:
+                _context.prev = 9;
                 _context.t0 = _context["catch"](0);
                 console.error(_context.t0);
 
-              case 11:
+              case 12:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[0, 8]]);
+        }, _callee, null, [[0, 9]]);
       }))();
     },
+
+    /**
+     * unique locations by state property
+     */
     uniqState: function uniqState() {
-      var states = this.locations.map(function (value, index, self) {
-        return value.state;
-      });
-      this.states = _toConsumableArray(new Set(states));
+      this.states = this.unique(this.locations, 'state');
     },
+
+    /**
+     * unique locations by city property
+     */
+    uniqCity: function uniqCity() {
+      this.cities = this.unique(this.locations, 'city');
+    },
+
+    /**
+     * filter states object by UserState string when typing
+     */
     filterStates: function filterStates() {
       var stateRef = this.$refs.states;
 
@@ -53601,10 +53620,57 @@ var Reg = new vue__WEBPACK_IMPORTED_MODULE_1___default.a({
         stateRef.removeAttribute('size');
       }
     },
+
+    /**
+     * filter cities object by Usercity string when typing
+     */
+    filterCities: function filterCities() {
+      var cityRef = this.$refs.cities;
+
+      if (this.userCity != null) {
+        cityRef.setAttribute('size', 5);
+      } else {
+        cityRef.removeAttribute('size');
+      }
+    },
+
+    /**
+     *
+     * @param {state} state  selected state object
+     */
     selectState: function selectState(state) {
       var stateRef = this.$refs.states;
       stateRef.removeAttribute('size');
-      this.userState = state;
+      this.userState = state.state;
+    },
+
+    /**
+    *
+    * @param {city} city  selected city object
+    */
+    selectCity: function selectCity(city) {
+      var cityRef = this.$refs.cities;
+      cityRef.removeAttribute('size');
+      this.userCity = city.city;
+    },
+
+    /**
+     *
+     * @param {array} unUniqueData array Object [{id:1,city:'one',state:'ku'}]
+     * @param {string} flag property object 'state'
+     */
+    unique: function unique(unUniqueData, flag) {
+      var uniqueData = Array();
+      unUniqueData.forEach(function (element) {
+        var find = uniqueData.find(function (value) {
+          return element[String(flag)] == value[String(flag)];
+        });
+
+        if (find != null && Object.keys(find).length > 0) {} else {
+          uniqueData.push(element);
+        }
+      });
+      return uniqueData;
     }
   },
   computed: {
@@ -53615,6 +53681,10 @@ var Reg = new vue__WEBPACK_IMPORTED_MODULE_1___default.a({
         return false;
       }
     },
+
+    /**
+     * filter states array by userState string and return it
+     */
     fStates: function fStates() {
       var _this2 = this;
 
@@ -53623,20 +53693,41 @@ var Reg = new vue__WEBPACK_IMPORTED_MODULE_1___default.a({
           return true;
         }
 
-        if (_this2.userState != '' && value.includes(_this2.userState)) {
+        if (_this2.userState != '' && value.state.includes(_this2.userState)) {
+          return true;
+        }
+      });
+    },
+
+    /**
+     * filter cities array by userCity string and return it
+     */
+    fCities: function fCities() {
+      var _this3 = this;
+
+      return this.cities.filter(function (value, index, self) {
+        if (_this3.userCity == '' || _this3.userCity == null) {
+          return true;
+        }
+
+        if (_this3.userCity != '' && value.city.includes(_this3.userCity)) {
           return true;
         }
       });
     }
   },
   mounted: function mounted() {
-    var index = this.$refs.roleId.options.selectedIndex;
-    this.roleId = this.$refs.roleId.options[index].value;
+    // alert('before')
+    var index = this.$refs.roleId.options.selectedIndex; // alert(index)
+
+    this.roleId = this.$refs.roleId.options[index].value; // alert('after')
   },
   created: function created() {
-    //get all locations
+    /**
+     * get all locations by ajax and get unique state for promise base returned
+     */
     var that = this;
-    that.getLocations(that.uniqState); //filter location and unique it with city
+    that.getLocations(that.uniqState, that.uniqCity); //filter location and unique it with city
   }
 });
 

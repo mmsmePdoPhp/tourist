@@ -69,19 +69,20 @@
                                 </div>
                             </div>
 
-                            {{-- city --}}
+
+                            {{-- state --}}
                             <div class="form-group row ">
                                 <label for="address" class="col-md-4 col-form-label text-center">{{ __('آدرس دقیق') }}</label>
 
                                 <div class="col-md-6 dir-ltr">
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
-                                          <select name="" class="custom-select mr-sm-2 dir-rtl" id="">
-                                              <option value="">شهر ها</option>
-                                              <option  value="" v-for="(state,index) in states" :key="index">@{{state}}</option>
+                                          <select name="" class="custom-select mr-sm-2 dir-rtl open" ref="cities" id="">
+                                              <option value="" v-if="userState.length==0">استان ها</option>
+                                              <option  v-for="(city,index) in fCities" :key="index" :value="city.id" @click="selectCity(city)">@{{city.city}}</option>
                                           </select>
                                         </div>
-                                        <input type="text" class="form-control" aria-label="Text input with dropdown button">
+                                        <input type="text" @keyup="filterCities" v-model="userCity" class="form-control" aria-label="Text input with dropdown button">
                                       </div>
 
                                     @error('address')
@@ -91,7 +92,8 @@
                                     @enderror
                                 </div>
                             </div>
-                            {{-- city --}}
+
+                            {{-- state --}}
                             <div class="form-group row ">
                                 <label for="address" class="col-md-4 col-form-label text-center">{{ __('آدرس دقیق') }}</label>
 
@@ -100,7 +102,7 @@
                                         <div class="input-group-prepend">
                                           <select name="" class="custom-select mr-sm-2 dir-rtl open" ref="states" id="">
                                               <option value="" v-if="userState.length==0">استان ها</option>
-                                              <option  v-for="(state,index) in fStates" :key="index" :value="state.id" @click="selectState(state)">@{{state}}</option>
+                                              <option  v-for="(state,index) in fStates" :key="index" :value="state.id" @click="selectState(state)">@{{state.state}}</option>
                                           </select>
                                         </div>
                                         <input type="text" @keyup="filterStates" v-model="userState" class="form-control" aria-label="Text input with dropdown button">
@@ -351,7 +353,7 @@
     <script>
         var roleId;
 
-        @if(old('userId'))
+        @if(old('roleId'))
 
          roleId = {{(old("roleId")) }};
         @endif
