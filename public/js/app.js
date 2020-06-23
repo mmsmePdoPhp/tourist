@@ -53615,12 +53615,12 @@ var Reg = new vue__WEBPACK_IMPORTED_MODULE_1___default.a({
       var stateRef = this.$refs.states;
 
       if (this.userState != null) {
-        stateRef.setAttribute('size', this.fStates > 5 ? 5 : this.fStates.length);
+        stateRef.setAttribute('size', this.fStates != null && this.fStates.length > 5 ? 5 : this.fStates.length);
       } else {
         stateRef.removeAttribute('size');
       }
 
-      if (this.fStates.length == 1) {
+      if (this.fStates != null && this.fStates.length == 1) {
         this.userState = this.fStates[0].state;
         stateRef.options.defaultSelected = true;
       } else {
@@ -53635,16 +53635,16 @@ var Reg = new vue__WEBPACK_IMPORTED_MODULE_1___default.a({
       var cityRef = this.$refs.cities;
 
       if (this.userCity != null) {
-        cityRef.setAttribute('size', this.fCities.length > 5 ? 5 : this.fCities.length);
+        cityRef.setAttribute('size', this.fCities != null && this.fCities.length > 5 ? 5 : this.fCities.length);
       } else {
         cityRef.removeAttribute('size');
       }
 
-      if (this.fCities.length == 1) {
+      if (this.fCities != null && this.fCities.length == 1) {
         this.userCity = this.fCities[0].city;
-        stateRef.options.defaultSelected = true;
+        cityRef.options.defaultSelected = true;
       } else {
-        stateRef.options.defaultSelected = false;
+        cityRef.options.defaultSelected = false;
       }
     },
 
@@ -53685,6 +53685,20 @@ var Reg = new vue__WEBPACK_IMPORTED_MODULE_1___default.a({
         }
       });
       return uniqueData;
+    },
+
+    /**
+     * operate when user direct select state from select element
+     */
+    directSelectState: function directSelectState(e) {
+      this.filterStates();
+    },
+
+    /**
+     * operate when user direct select City from select element
+     */
+    directSelectCity: function directSelectCity(e) {
+      this.filterCities();
     }
   },
   computed: {

@@ -76,7 +76,7 @@
                                 <div class="col-md-6 dir-ltr">
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
-                                          <select name="" class="custom-select mr-sm-2 dir-rtl open" ref="cities" id="">
+                                          <select name=""  @click="directSelectCity($event)" class="custom-select mr-sm-2 dir-rtl open" ref="cities" id="state">
                                               <option value="" v-if="userCity.length==0">استان ها</option>
                                               <option  v-for="(city,index) in fCities" :key="index" :value="city.id" @click="selectCity(city)">@{{city.city}}</option>
                                           </select>
@@ -99,12 +99,12 @@
                                 <div class="col-md-6 dir-ltr">
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
-                                          <select name="" class="custom-select mr-sm-2 dir-rtl open" ref="states" id="">
+                                          <select name="" @click.self="directSelectState($event)" class="custom-select mr-sm-2 dir-rtl open" ref="states" id="city">
                                               <option value="" v-if="userState.length==0">استان ها</option>
                                               <option  v-for="(state,index) in fStates" :key="index" :value="state.id" @click="selectState(state)">@{{state.state}}</option>
                                           </select>
                                         </div>
-                                        <input type="text" @keyup="filterStates" v-model="userState" class="form-control" aria-label="Text input with dropdown button">
+                                        <input type="text" @keyup.self="filterStates" v-model="userState" class="form-control" aria-label="Text input with dropdown button">
                                       </div>
 
                                     @error('address')
@@ -269,13 +269,13 @@
 
                             {{-- national card image --}}
                             <div class="form-group row">
-                                <label for="nationalCode"
+                                <label for="nationalCardImage"
                                     class="col-md-4 col-form-label text-center">{{ __('تصویر کارت ملی') }}</label>
 
                                 <div class="col-md-6 text-center">
 
                                     <div class="custom-file">
-                                        <input type="file" class="custom-file-input @error('nationalCardImage') is-invalid @enderror" name="nationalCardImage" id="customFileLang" lang="es">
+                                        <input type="file" class="custom-file-input @error('nationalCardImage') is-invalid @enderror" name="nationalCardImage" id="nationalCardImage" lang="es">
                                         <label class="custom-file-label" for="customFileLang">آپلود عکس</label>
                                         @error('nationalCardImage')
                                             <span class="invalid-feedback" role="alert">
@@ -299,7 +299,7 @@
                                         </div>
                                     </div>
                                     <div class="custom-file">
-                                        <input type="file" class="custom-file-input @error('contractImage') is-invalid @enderror" name="contractImage" id="customFileLang" lang="en">
+                                        <input type="file" class="custom-file-input @error('contractImage') is-invalid @enderror" name="contractImage" id="contractImage" lang="en">
                                         <label class="custom-file-label" for="customFileLang"> آپلود عکس</label>
                                         @error('contractImage')
                                             <span class="invalid-feedback" role="alert">
