@@ -53615,9 +53615,16 @@ var Reg = new vue__WEBPACK_IMPORTED_MODULE_1___default.a({
       var stateRef = this.$refs.states;
 
       if (this.userState != null) {
-        stateRef.setAttribute('size', 5);
+        stateRef.setAttribute('size', this.fStates > 5 ? 5 : this.fStates.length);
       } else {
         stateRef.removeAttribute('size');
+      }
+
+      if (this.fStates.length == 1) {
+        this.userState = this.fStates[0].state;
+        stateRef.options.defaultSelected = true;
+      } else {
+        stateRef.options.defaultSelected = false;
       }
     },
 
@@ -53628,9 +53635,16 @@ var Reg = new vue__WEBPACK_IMPORTED_MODULE_1___default.a({
       var cityRef = this.$refs.cities;
 
       if (this.userCity != null) {
-        cityRef.setAttribute('size', 5);
+        cityRef.setAttribute('size', this.fCities.length > 5 ? 5 : this.fCities.length);
       } else {
         cityRef.removeAttribute('size');
+      }
+
+      if (this.fCities.length == 1) {
+        this.userCity = this.fCities[0].city;
+        stateRef.options.defaultSelected = true;
+      } else {
+        stateRef.options.defaultSelected = false;
       }
     },
 

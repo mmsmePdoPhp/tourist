@@ -37,8 +37,7 @@
                                             class="col-md-4 col-form-label text-center">{{ __('نام') }}</label>
 
                                         <div class="col-md-6">
-                                            <input id="fname" type="text"
-                                                class="form-control @error('fname') is-invalid @enderror" name="fname" value="{{ old('fname') ?? 'mohammad' }}" required autocomplete="fname" autofocus >
+                                            <input id="fname" type="text" class="form-control @error('fname') is-invalid @enderror" name="fname" value="{{ old('fname') ?? 'mohammad' }}" required autocomplete="fname" autofocus >
 
                                             @error('fname')
                                                 <span class="invalid-feedback" role="alert">
@@ -56,8 +55,7 @@
                                             class="col-md-4 col-form-label text-center">{{ __('نام خانوادگی') }}</label>
 
                                         <div class="col-md-6">
-                                            <input id="lname" type="text"
-                                                class="form-control @error('lname') is-invalid @enderror" name="lname" value="{{ old('lname') ?? 'ravand' }}" required autocomplete="lname"  autofocus>
+                                            <input id="lname" type="text" class="form-control @error('lname') is-invalid @enderror" name="lname" value="{{ old('lname') ?? 'ravand' }}" required autocomplete="lname"  autofocus>
 
                                             @error('lname')
                                                 <span class="invalid-feedback" role="alert">
@@ -72,13 +70,14 @@
 
                             {{-- state --}}
                             <div class="form-group row ">
+
                                 <label for="address" class="col-md-4 col-form-label text-center">{{ __('آدرس دقیق') }}</label>
 
                                 <div class="col-md-6 dir-ltr">
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
                                           <select name="" class="custom-select mr-sm-2 dir-rtl open" ref="cities" id="">
-                                              <option value="" v-if="userState.length==0">استان ها</option>
+                                              <option value="" v-if="userCity.length==0">استان ها</option>
                                               <option  v-for="(city,index) in fCities" :key="index" :value="city.id" @click="selectCity(city)">@{{city.city}}</option>
                                           </select>
                                         </div>
