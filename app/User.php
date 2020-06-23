@@ -17,22 +17,15 @@ class User extends Authenticatable
     /**
      * Get the state associated with the user.
      */
-    public function state()
+    public function location()
     {
-        return $this->hasOne(State::class);
+        return $this->belongsTo(Location::class);
         // note: we can also inlcude Mobile model like: 'App\Mobile'
     }
 
 
 
-    /**
-     * Get the city associated with the user.
-     */
-    public function city()
-    {
-        return $this->hasOne(City::class);
-        // note: we can also inlcude Mobile model like: 'App\Mobile'
-    }
+
 
 
     /**

@@ -95,7 +95,7 @@ class RegisterController extends Controller
         try {
 
             // if iformation was saved
-            $nationalCard = Storage::put('nationalCard', $data['nationalCardImage']);
+           return $nationalCard = Storage::put('nationalCard', $data['nationalCardImage']);
             $contractImage = Storage::put('contract', $data['contractImage']);
 
             $user = User::create([

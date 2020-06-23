@@ -1,5 +1,6 @@
 <?php
 
+use App\Location;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,4 +17,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+Route::get('/locations', function () {
+    return $location = Location::select('id','state','city')->get();
+
 });

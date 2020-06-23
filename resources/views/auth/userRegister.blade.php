@@ -69,43 +69,48 @@
                                 </div>
                             </div>
 
+                            {{-- city --}}
+                            <div class="form-group row ">
+                                <label for="address" class="col-md-4 col-form-label text-center">{{ __('آدرس دقیق') }}</label>
 
-                             {{-- state and city --}}
-                             <div class="form-group row justify-content-center">
-                                <div class="col-5">
-                                    {{--  state --}}
-                                    <div class="form-group row">
-                                        <label for="state"
-                                            class="col-md-4 col-form-label text-center">{{ __('استان') }}</label>
-
-                                        <div class="col-md-6">
-                                            <input id="state" type="text"  class="form-control @error('state') is-invalid @enderror" state="state"  value="{{ old('state') ?? 'kurdistan' }}" required autocomplete="state" autofocus name="state" value="kurdistan">
-
-                                            @error('state')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                            @enderror
+                                <div class="col-md-6 dir-ltr">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                          <select name="" class="custom-select mr-sm-2 dir-rtl" id="">
+                                              <option value="">شهر ها</option>
+                                              <option  value="" v-for="(state,index) in states" :key="index">@{{state}}</option>
+                                          </select>
                                         </div>
-                                    </div>
+                                        <input type="text" class="form-control" aria-label="Text input with dropdown button">
+                                      </div>
+
+                                    @error('address')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
+                            </div>
+                            {{-- city --}}
+                            <div class="form-group row ">
+                                <label for="address" class="col-md-4 col-form-label text-center">{{ __('آدرس دقیق') }}</label>
 
-                                <div class="col-5">
-                                    {{--  city --}}
-                                    <div class="form-group row">
-                                        <label for="city"
-                                            class="col-md-4 col-form-label text-center">{{ __('شهر ') }}</label>
-
-                                        <div class="col-md-6">
-                                            <input id="city" type="text" class="form-control @error('city') is-invalid @enderror" city="city" value="{{ old('city') ?? 'mariavan' }}" required autocomplete="city" autofocus name="city" >
-
-                                            @error('city')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                            @enderror
+                                <div class="col-md-6 dir-ltr">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                          <select name="" class="custom-select mr-sm-2 dir-rtl open" ref="states" id="">
+                                              <option value="" v-if="userState.length==0">استان ها</option>
+                                              <option  v-for="(state,index) in fStates" :key="index" :value="state.id" @click="selectState(state)">@{{state}}</option>
+                                          </select>
                                         </div>
-                                    </div>
+                                        <input type="text" @keyup="filterStates" v-model="userState" class="form-control" aria-label="Text input with dropdown button">
+                                      </div>
+
+                                    @error('address')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                             </div>
 
@@ -344,6 +349,11 @@
 
 @section('script')
     <script>
-        var roleId = {{(old("roleId")) }}
+        var roleId;
+
+        @if(old('userId'))
+
+         roleId = {{(old("roleId")) }};
+        @endif
     </script>
 @endsection
