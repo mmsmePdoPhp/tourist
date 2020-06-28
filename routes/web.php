@@ -1,6 +1,10 @@
 <?php
 
+use App\City;
+use App\Location;
+use App\Role;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,25 +17,9 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-// Route::any('captcha-test', function() {
-//     if (request()->getMethod() == 'POST') {
-//         $rules = ['captcha' => 'required|captcha'];
-//         $validator = validator()->make(request()->all(), $rules);
-//         if ($validator->fails()) {
-//             echo '<p style="color: #ff0000;">Incorrect!</p>';
-//         } else {
-//             echo '<p style="color: #00ff30;">Matched :)</p>';
-//         }
-//     }
 
-//     $form = '<form method="post" action="captcha-test">';
-//     $form .= '<input type="hidden" name="_token" value="' . csrf_token() . '">';
-//     $form .= '<p>' . captcha_img() . '</p>';
-//     $form .= '<p><input type="text" name="captcha"></p>';
-//     $form .= '<p><button type="submit" name="check">Check</button></p>';
-//     $form .= '</form>';
-//     return $form;
-// });
+
+// example upload file
 
 Route::get('/', function () {
     if(Auth::guest()){
@@ -41,32 +29,30 @@ Route::get('/', function () {
     }
 });
 
+Route::get('userRegister', function() {
+    $roles = Role::all()->filter(function($role){
+        if($role->name == 'admin'){
+
+        }else{
+            return $role;
+        }
+    });
+    return view('auth.userRegister')->withRoles($roles);
+})->name('userRegister');
+
+
 Route::group(['middleware' => ['isAdmin']], function () {
 
-    Route::get('gate', function () {
-        return 'hi from gate';
-    });
 
 
     Route::post('/users/restore', 'UserController@restore')->name('users.restore');
     Route::get('/users/trashed', 'UserController@trashed')->name('users.trashed');
-    Route::resource('users', 'UserController');
 
+    Route::resource('users', 'UserController');
     //all routes for category
     Route::resource('cateogry', 'CategoryController');
     Route::get('newCategory','CategoryController@newCategory')->name("cateogry.new");
 
-
-
-    Route::resource('tag', 'TagController');
-
-    Route::resource('tor', 'TorController');
-
-    Route::resource('tortype', 'TortypeController');
-
-    Route::resource('foodprice', 'FoodpriceController');
-
-    Route::resource('attraction', 'AtrractionController');
 
     Route::resource('city', 'CityController');
 
@@ -74,17 +60,12 @@ Route::group(['middleware' => ['isAdmin']], function () {
     Route::get('role/trashed', 'RoleController@trashed')->name('role.trashed');
     Route::resource('role', 'RoleController');
 
-    Route::resource('post', 'PostController');
 
     Route::resource('state', 'StateController');
 
-    Route::resource('guid', 'GuidController');
 
-    Route::resource('comment', 'CommentController');
 
-    Route::resource('link', 'LinkController');
 
-    Route::resource('sublink', 'SublinkController');
 
     Route::get('/home', 'HomeController@index')->name('home');
 

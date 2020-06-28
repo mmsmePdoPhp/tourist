@@ -7,7 +7,6 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
-
 // some style for layoutPoor file
 body#container {
     background: #1A2980;
@@ -17,7 +16,23 @@ body#container {
     background: linear-gradient(to bottom, #26D0CE, #1A2980);
     /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
-    height: 100vh;
+    min-height: 100vh;
+}
+
+.dir-rtl{
+    direction: rtl !important;
+}
+.dir-ltr{
+    direction: ltr !important;
+}
+
+.ents-active:active {
+    background-color: green !important;
+}
+.ents-active:focus {
+    background-color: crimson !important;
+    box-shadow: 1px 1px 1px darkblue;
+    border-color: darkcyan;
 }
 
 
@@ -123,3 +138,5 @@ body#container {
   }
 
 //end typography
+
+

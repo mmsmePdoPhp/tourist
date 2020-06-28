@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSublinksTable extends Migration
+class CreateRolesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class CreateSublinksTable extends Migration
      */
     public function up()
     {
-        Schema::create('sublinks', function (Blueprint $table) {
+        Schema::create('roles', function (Blueprint $table) {
             $table->id();
+            $table->string('name',20)->unique();
             $table->timestamps();
         });
     }
@@ -26,6 +27,6 @@ class CreateSublinksTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sublinks');
+        Schema::dropIfExists('roles');
     }
 }

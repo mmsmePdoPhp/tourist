@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Role;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
@@ -12,6 +13,18 @@ use Symfony\Component\CssSelector\Node\FunctionNode;
 
 class UserController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->authorize('viewAny', Auth::user());
+        $this->authorize('create', Auth::user());
+        $this->authorize('view', Auth::user());
+        $this->authorize('update', Auth::user());
+        $this->authorize('delete', Auth::user());
+        $this->authorize('restore', Auth::user());
+        $this->authorize('forceDelete', Auth::user());
+
+    }
     /**
      * Display a listing of the resource.
      *

@@ -80,7 +80,8 @@ return [
     |
     */
 
-    'locale' => 'en',
+    // 'locale' => 'en',
+    'locale' => 'fa',
 
     /*
     |--------------------------------------------------------------------------
@@ -162,6 +163,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         Mews\Captcha\CaptchaServiceProvider::class,
+        App\Providers\GoogleDriveServiceProvider::class,
         /*
          * Package Service Providers...
          */

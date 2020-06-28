@@ -9,8 +9,7 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -24,12 +23,34 @@
 <body id="container">
     <div class="container=fluid" >
         <main class="py-4">
-    @if (session()->has('authError'))
-        <x-package-alert title="sorry" type="danger" message="{{session()->get('authError')}}"></x-package-alert>
-    @endif
+            {{-- @if (session()->has('authError')) --}}
+                {{-- <x-package-alert title="sorry" type="danger" message="{{session()->get('authError')}}"></x-package-alert> --}}
+            {{-- @endif --}}
+
+            @if ($errors->any())
+                <x-package-modal type="danger" title="خطا !!"     content="خطا در وارد کردن اطلاعات" />
+            @endif
+
             @yield('content')
+
         </main>
+
     </div>
+
+
+
+
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}" ></script>
+    {{-- show automatically modal status --}}
+
+    {{-- custome script --}}
+    <script defer>
+        $("#modalStatus").modal('show')
+    </script>
+
+    @yield('script')
+
 
 </body>
 </html>

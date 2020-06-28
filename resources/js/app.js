@@ -5,7 +5,8 @@
  */
 
 require('./bootstrap');
-
+require('@popperjs/core')
+require ('./enter');
 window.Vue = require('vue');
 
 /**
